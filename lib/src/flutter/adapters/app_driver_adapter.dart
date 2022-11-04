@@ -140,6 +140,7 @@ abstract class AppDriverAdapter<TNativeAdapter, TFinderType, TWidgetBaseType> {
           } else {
             await Future.delayed(pollInterval);
           }
+          attempts += 1;
         }
       },
     ).timeout(
