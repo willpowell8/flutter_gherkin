@@ -88,8 +88,8 @@ abstract class GherkinIntegrationTestRunner {
       },
     );
 
-    await hook.onBeforeRun(configuration);
-    await reporter.test.onStarted.invoke();
+    //await hook.onBeforeRun(configuration);
+    //await reporter.test.onStarted.invoke();
 
     onRun();
   }
