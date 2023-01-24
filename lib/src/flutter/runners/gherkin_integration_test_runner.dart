@@ -267,6 +267,19 @@ abstract class GherkinIntegrationTestRunner {
         semanticsEnabled: configuration.semanticsEnabled,
       );
     } else {
+      () async {
+        reporter.scenario.onFinished.invoke(
+          ScenarioMessage(
+            name: name,
+            description: description,
+            context: RunnableDebugInformation('', 0, ''),
+            hasPassed: true,
+          ),
+        );
+        if (onAfter != null) {
+          await onAfter!();
+        }
+      }();
       reporter.message(
         'Ignoring scenario `$name` as tag expression `${configuration.tagExpression}` not satisfied',
         MessageLevel.info,
