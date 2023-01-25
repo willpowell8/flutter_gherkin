@@ -268,7 +268,10 @@ abstract class GherkinIntegrationTestRunner {
       );
     } else {
       () async {
-        reporter.scenario.onFinished.invoke(
+        if (onBefore != null) {
+          await onBefore!();
+        }
+        reporter.scenario.onStarted.invoke(
           ScenarioMessage(
             name: name,
             description: description,
