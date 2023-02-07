@@ -85,6 +85,7 @@ class FlutterTestConfiguration extends TestConfiguration {
   }
 
   FlutterTestConfiguration({
+    bool addCustomSteps = false,
     super.features = const <Pattern>[],
     super.featureDefaultLanguage = 'en',
     super.order = ExecutionOrder.random,
@@ -101,9 +102,11 @@ class FlutterTestConfiguration extends TestConfiguration {
     Iterable<CustomParameter<dynamic>>? customStepParameterDefinitions,
     Iterable<StepDefinitionGeneric<World>>? stepDefinitions,
   }) : super(
-          customStepParameterDefinitions: List.from(
+          customStepParameterDefinitions: addCustomSteps ? List.from(
             customStepParameterDefinitions ?? const Iterable.empty(),
-          )..addAll(_wellKnownParameters),
+          )..addAll(_wellKnownParameters) : List.from(
+            customStepParameterDefinitions ?? const Iterable.empty(),
+          ),
           stepDefinitions: List.from(
             stepDefinitions ?? const Iterable.empty(),
           )..addAll(_wellKnownStepDefinitions),
