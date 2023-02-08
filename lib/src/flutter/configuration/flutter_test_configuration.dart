@@ -102,13 +102,11 @@ class FlutterTestConfiguration extends TestConfiguration {
     Iterable<CustomParameter<dynamic>>? customStepParameterDefinitions,
     Iterable<StepDefinitionGeneric<World>>? stepDefinitions,
   }) : super(
-          customStepParameterDefinitions: addCustomSteps ? (List.from(
+          customStepParameterDefinitions: List.from(
             customStepParameterDefinitions ?? const Iterable.empty(),
-          )..addAll(_wellKnownParameters)) : List.from(
-            customStepParameterDefinitions ?? const Iterable.empty(),
-          ),
+          )..addAll(_wellKnownParameters),
           stepDefinitions: List.from(
             stepDefinitions ?? const Iterable.empty(),
-          )..addAll(_wellKnownStepDefinitions),
+          )..addAll(addCustomSteps ? _wellKnownStepDefinitions : []),
         );
 }
